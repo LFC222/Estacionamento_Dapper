@@ -1,0 +1,45 @@
+﻿@model estacionamento_dapper.Models.ValoreDoMinuto
+
+@{
+    ViewData["Title"] = "Editando Valor do Minuto";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-header bg-primary text-white rounded-top-4">
+                    <h4 class="mb-0">Cadastrar Valor por Minuto</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Editar" asp-controller="ValorDoMinuto" asp-route-id ="@Model.Id" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Minutos" class="form-label"></label>
+                            <input asp-for="Minutos" class="form-control" value="@Model.Minutos" type="number" min="0" required />
+                            <span asp-validation-for="Minutos" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Valor" class="form-label"></label>
+                            <input asp-for="Valor" class="form-control" value="@Model.Valor" type="number" step="0.01" min="0" required />
+                            <span asp-validation-for="Valor" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
